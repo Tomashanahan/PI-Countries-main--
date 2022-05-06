@@ -1,20 +1,6 @@
-const { Router } = require('express');
+const { Router } = require("express");
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
-const Countries = require('./Countries')
-const Activities = require('./Activities')
-
-const router = Router();
-
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-
-router.use('/countries',Countries)
-router.use('/activities',Activities)
-
-// GET https://restcountries.com/v3/all
-// GET https://restcountries.com/v3/name/{name}
-// GET https://restcountries.com/v3/alpha/{code}
 
 //  GET /countries:
 // En una primera instancia deberán traer todos los países desde restcountries y guardarlos en su propia base de datos y luego ya utilizarlos desde allí (Debe almacenar solo los datos necesarios para la ruta principal)
@@ -29,6 +15,15 @@ router.use('/activities',Activities)
 //  POST /activity:
 // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de actividad turística por body
 // Crea una actividad turística en la base de datos
+
+// GET https://restcountries.com/v3/all
+// GET https://restcountries.com/v3/name/{name}
+// GET https://restcountries.com/v3/alpha/{code}
+
+const router = Router();
+// Imagen de la bandera
+// Nombre
+// Continente
 
 
 
