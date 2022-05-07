@@ -4,6 +4,7 @@ const { Op } = require("sequelize");
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 const { Country } = require("../db");
+const { Activity } = require("../db");
 const router = Router();
 
 //  GET /countries: ✅
@@ -101,7 +102,11 @@ router.get("/", async (req, res, next) => {
 router.get("/:idPais", async (req, res, next) => {
 	const { idPais } = req.params;
 	try {
-		const db_countrie = await Country.findOne({ where: { id: idPais } });
+		const db_countrie = await Country.findOne({
+			where: { id: idPais },
+			include: Activity,
+		});
+		console.log(db_countrie);
 		if (db_countrie) {
 			let name = db_countrie.name;
 			let info = await axios.get(`https://restcountries.com/v3/name/${name}`);
@@ -114,8 +119,10 @@ router.get("/:idPais", async (req, res, next) => {
 						subregion: elem.subregion,
 						area: elem.area,
 						poblacion: elem.population,
+						activities: db_countrie.activities,
 					};
 				});
+
 				res.json(info);
 			} else {
 				res.send("Pais no encontrado 🥲");

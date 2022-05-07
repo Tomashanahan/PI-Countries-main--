@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const { Activity } = require("../db");
+const { Country } = require("../db");
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -12,6 +14,7 @@ const { Router } = require("express");
 //  GET /countries?name="...":
 // Obtener los países que coincidan con el nombre pasado como query parameter (No necesariamente tiene que ser una matcheo exacto)
 // Si no existe ningún país mostrar un mensaje adecuado
+
 //  POST /activity:
 // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de actividad turística por body
 // Crea una actividad turística en la base de datos
@@ -21,10 +24,40 @@ const { Router } = require("express");
 // GET https://restcountries.com/v3/alpha/{code}
 
 const router = Router();
-// Imagen de la bandera
-// Nombre
-// Continente
+
+router.get("/", async (req, res, next) => {
+	try {
+		const db_activities = await Activity.findAll();
+		res.json(db_activities);
+	} catch (error) {
+		next(error);
+	}
+});
+
+router.post("/", async (req, res, next) => {
+	const { name, dificultad, duracion, temporada, pais } = req.body;
+
+	try {
+		const new_activity = await Activity.create({
+			name,
+			dificultad,
+			duracion,
+			temporada,
+			pais,
+		});
+
+		// const db_activity = await Activity.findOne({ where: { name } });
+		const db_country = await Country.findAll({
+			where: { id: pais.map((e) => e) },
+		});
+
+        await new_activity.setCountries(db_country)
 
 
+		res.json(db_country);
+	} catch (error) {
+		next(error);
+	}
+});
 
 module.exports = router;
