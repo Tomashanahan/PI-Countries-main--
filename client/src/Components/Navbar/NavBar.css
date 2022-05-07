@@ -1,0 +1,10 @@
+.nav_bar{
+    margin-top: 20px;
+}
+
+.links-nav_bar{
+    font-weight: bold;
+    margin: 10px 20px;
+    text-decoration: none;
+    color: black;
+}

@@ -29,13 +29,18 @@ router.post("/", async (req, res, next) => {
 			where: { id: pais.map((e) => e) },
 		});
 
-        await new_activity.setCountries(db_country)
-
+		await new_activity.setCountries(db_country);
 
 		res.json(db_country);
 	} catch (error) {
 		next(error);
 	}
+});
+
+router.delete("/:id", async (req, res, next) => {
+	const { id } = req.params;
+	await Activity.destroy({ where: { id } });
+	res.send("Tarea eliminada con exito");
 });
 
 module.exports = router;

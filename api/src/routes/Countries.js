@@ -30,10 +30,11 @@ async function get_countries() {
 			capital: country.capital,
 			subregion: country.subregion,
 			area: country.area,
-			poblacion: country.population,
+			poblacion: country.poblacion,
 		});
 	});
 }
+// get_countries()
 
 router.get("/", async (req, res, next) => {
 	const { name } = req.query;
