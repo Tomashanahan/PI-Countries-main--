@@ -48,20 +48,3 @@ module.exports = {
 	...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
 	conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 };
-
-//  País con las siguientes propiedades:
-// ID (Código de 3 letras) *
-// Nombre *
-// Imagen de la bandera *
-// Continente *
-// Capital *
-// Subregión
-// Área
-// Población
-
-//  Actividad Turística con las siguientes propiedades:
-// ID
-// Nombre
-// Dificultad (Entre 1 y 5)
-// Duración
-// Temporada (Verano, Otoño, Invierno o Primavera)
