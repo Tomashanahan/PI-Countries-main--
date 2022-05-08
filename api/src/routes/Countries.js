@@ -37,7 +37,7 @@ async function get_countries() {
 // get_countries()
 
 router.get("/", async (req, res, next) => {
-	const { name } = req.query;
+	const { name, order } = req.query;
 	try {
 		if (name) {
 			const db_countries = await Country.findAll({
@@ -48,6 +48,12 @@ router.get("/", async (req, res, next) => {
 			} else {
 				res.send(`El pais "${name}" no fue encontrado`);
 			}
+		} else if (order === "ASC") {
+			const db_countries = await Country.findAll({ order: [["name", "ASC"]] });
+			res.json(db_countries);
+		} else if (order === "DESC") {
+			const db_countries = await Country.findAll({ order: [["name", "DESC"]] });
+			res.json(db_countries);
 		} else {
 			const db_countries = await Country.findAll();
 			res.json(db_countries);
@@ -71,6 +77,7 @@ router.get("/:idPais", async (req, res, next) => {
 			if (info.data.length > 0) {
 				info = info.data.map((elem) => {
 					return {
+						name: elem.name.common,
 						codigo: elem.cca3,
 						img_bandera: elem.flags[1],
 						capital: elem.capital !== undefined && elem.capital[0],

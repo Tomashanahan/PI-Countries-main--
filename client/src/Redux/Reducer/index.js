@@ -4,11 +4,14 @@ import {
 	DELETE_ACTIVITY,
 	GET_ACTIVITIES,
 	ADD_ACTIVITY,
+	CLEAN_COUNTRY_DETAIL,
+	GET_COUNTRIES_SORTED_BY_NAME,
 } from "../Actions/actions_types";
 
 const initialState = {
 	country: {},
 	countries: [],
+	countries_sorted: [],
 	activity: {},
 	activities: [],
 };
@@ -41,6 +44,18 @@ function reducer(state = initialState, { type, payload }) {
 		case DELETE_ACTIVITY: {
 			return {
 				...state,
+			};
+		}
+		case CLEAN_COUNTRY_DETAIL: {
+			return {
+				...state,
+				country: {},
+			};
+		}
+		case GET_COUNTRIES_SORTED_BY_NAME: {
+			return {
+				...state,
+				countries_sorted: payload,
 			};
 		}
 		default:

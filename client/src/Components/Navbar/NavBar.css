@@ -1,10 +1,11 @@
 .nav_bar{
-    margin-top: 20px;
+    background-color: #354f52;
+    padding: 25px;
 }
 
 .links-nav_bar{
     font-weight: bold;
     margin: 10px 20px;
     text-decoration: none;
-    color: black;
+    color: #F2F9ED;
 }

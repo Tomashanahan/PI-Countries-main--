@@ -1,0 +1,87 @@
+
+.add_activity {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 40%;
+	margin: auto;
+	margin-top: 50px;
+}
+
+.add_activity-form {
+	width: 100%;
+	margin: auto;
+	text-align: left;
+}
+
+.add_activity-label {
+	margin-top: 20px;
+}
+
+.add_activity-select{
+	margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+	background-color: #2f3e46;
+	border: none;
+	color: #F1FAEF;
+	border-radius: 3px;
+}
+.add_activity-select:focus{
+	outline: none;
+}
+
+.add_activity-option{
+	cursor: pointer;
+	background-color: none;
+}
+
+.add_activity-button {
+	display: flex;
+	justify-content: center;
+	font-weight: bold;
+	border: none;
+	border-radius: 3px;
+	margin-top: 30px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.add_activity-input {
+    width: 97%;
+	padding : 15px 0 10px 15px;
+	margin-top: 10px;
+    margin-bottom: 20px;
+	background-color: #2f3e46;
+	border: none;
+	color: #F1FAEF;
+	border-radius: 3px;
+}
+
+.add_activity-button {
+    width: 45%;
+    margin: auto;
+    justify-self: center;
+	background-color: #A4C3B2;
+	color: #031926;
+	margin-bottom: 100px;
+}
+
+.error{
+    margin-top: -10px;
+    color: #E63A46;
+}
+
+.pais_seleccionado{
+	font-weight: bolder;
+	color: #e9edc9;
+	background: none;
+}
+
+.pais_seleccionado:focus{
+	outline: none;
+	background-color: none;
+	background: none;
+}

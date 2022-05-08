@@ -5,14 +5,18 @@ import {
 	DELETE_ACTIVITY,
 	GET_ACTIVITIES,
 	ADD_ACTIVITY,
+	CLEAN_COUNTRY_DETAIL,
+	GET_COUNTRIES_SORTED_BY_NAME,
 } from "./actions_types";
 
-export function get_country(name) {
+export function get_country(id) {
 	return (dispatch) => {
-		axios.get(`http://localhost:3001/countries?name=${name}`).then((res) => {
-			dispatch({ type: GET_COUNTRY, payload: res.data });
-		})
-        .catch(e => console.log(e))
+		axios
+			.get(`http://localhost:3001/countries/${id}`)
+			.then((res) => {
+				dispatch({ type: GET_COUNTRY, payload: res.data });
+			})
+			.catch((e) => console.log(e));
 	};
 }
 
@@ -24,6 +28,18 @@ export function get_countries() {
 	};
 }
 
+export function get_countries_sorted_by_name(order) {
+	return (dispatch) => {
+		axios.get(`http://localhost:3001/countries?order=${order}`).then((res) => {
+			dispatch({ type: GET_COUNTRIES_SORTED_BY_NAME, payload: res.data });
+		});
+	};
+}
+
+export function clean_country_detail() {
+	return { type: CLEAN_COUNTRY_DETAIL };
+}
+
 export function get_activities() {
 	return (dispatch) => {
 		axios.get(`http://localhost:3001/activities`).then((res) => {
@@ -32,13 +48,12 @@ export function get_activities() {
 	};
 }
 
-export function delete_activity(id){
-    return dispatch => {
-        axios.delete(`http://localhost:3001/activities/${id}`)
-        .then(res => {
-            dispatch({type : DELETE_ACTIVITY, payload : res.data})
-        })
-    }
+export function delete_activity(id) {
+	return (dispatch) => {
+		axios.delete(`http://localhost:3001/activities/${id}`).then((res) => {
+			dispatch({ type: DELETE_ACTIVITY, payload: res.data });
+		});
+	};
 }
 
 export function add_activity(activity) {
