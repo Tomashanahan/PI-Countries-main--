@@ -17,10 +17,11 @@ import "./Country.css";
 //  Paginado para ir buscando y mostrando los siguientes paises, 10 paises por pagina, mostrando los primeros 9 en la primer pagina.
 
 function Country({ name, img_bandera, continente,id }) {
+
 	return (
 		<div className="card_country">
 			<Link to={`country_detail/${id}`} className='card_country-link'>
-				<img src={img_bandera} alt={name} width={"150px"} />
+				<img src={img_bandera} alt={name} width={"170px"} height='100px'/>
 				<h3>{name}</h3>
 				<p className="card_country-p">{continente}</p>
 			</Link>

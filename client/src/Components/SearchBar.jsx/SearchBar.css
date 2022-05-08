@@ -1,0 +1,36 @@
+.search_bar {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 50%;
+	margin: auto;
+	margin-top: 20px;
+}
+
+.search_bar input::placeholder{
+    color: #2F3E46;
+}
+.search_bar input:focus{
+    outline: none;
+}
+
+.search_bar input {
+    display: flex;
+    align-items: center;
+	padding: 10px;
+	background-color: #cad2c5;
+	border: none;
+	color: #2F3E46;
+	border-radius: 3px;
+}
+
+.search_bar select{
+    padding: 10px;
+	background-color: #cad2c5;
+	border: none;
+	color: #2F3E46;
+	border-radius: 3px;
+}
+.search_bar select:focus{
+	outline: none;
+}

@@ -6,6 +6,7 @@ import {
 	ADD_ACTIVITY,
 	CLEAN_COUNTRY_DETAIL,
 	GET_COUNTRIES_SORTED_BY_NAME,
+	GET_COUNTRY_BY_NAME
 } from "../Actions/actions_types";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
 	countries_sorted: [],
 	activity: {},
 	activities: [],
+	search_country_name : []
 };
 
 function reducer(state = initialState, { type, payload }) {
@@ -56,6 +58,12 @@ function reducer(state = initialState, { type, payload }) {
 			return {
 				...state,
 				countries_sorted: payload,
+			};
+		}
+		case GET_COUNTRY_BY_NAME: {
+			return {
+				...state,
+				search_country_name: payload,
 			};
 		}
 		default:

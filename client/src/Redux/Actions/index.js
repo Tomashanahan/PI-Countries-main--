@@ -7,6 +7,7 @@ import {
 	ADD_ACTIVITY,
 	CLEAN_COUNTRY_DETAIL,
 	GET_COUNTRIES_SORTED_BY_NAME,
+	GET_COUNTRY_BY_NAME,
 } from "./actions_types";
 
 export function get_country(id) {
@@ -16,15 +17,30 @@ export function get_country(id) {
 			.then((res) => {
 				dispatch({ type: GET_COUNTRY, payload: res.data });
 			})
-			.catch((e) => console.log(e));
+			.catch((e) => dispatch({ type: GET_COUNTRY, payload: e }));
 	};
 }
 
 export function get_countries() {
 	return (dispatch) => {
-		axios.get(`http://localhost:3001/countries`).then((res) => {
+		axios.get(`http://localhost:3001/countries?order=ASC`).then((res) => {
 			dispatch({ type: GET_COUNTRIES, payload: res.data });
 		});
+	};
+}
+
+export function get_country_by_name(name, order) {
+	console.log("Action Input->", name);
+	console.log("Action Order->", order);
+	return (dispatch) => {
+		axios
+			.get(
+				`http://localhost:3001/countries?name=${name}&order=${order}`
+			)
+			.then((res) => {
+				dispatch({ type: GET_COUNTRY_BY_NAME, payload: res.data });
+			})
+			.catch((e) => console.log(e));
 	};
 }
 

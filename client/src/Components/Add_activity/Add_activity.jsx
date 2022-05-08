@@ -6,7 +6,7 @@ import { get_countries_sorted_by_name } from "../../Redux/Actions/index";
 import "./Add_acttivity.css";
 
 function Add_activity() {
-	let { countries_sorted } = useSelector((state) => state);
+	let { countries_sorted,country_name } = useSelector((state) => state);
 	const dispatch = useDispatch();
 
 	const [inputValues, setInputValues] = useState({
@@ -98,6 +98,7 @@ function Add_activity() {
 					type="text"
 					name="name"
 					onChange={inputChange}
+					autoFocus
 				/>
 				{inputErrores.name !== "" ? (
 					<p className="error">{inputErrores.name}</p>

@@ -7,3 +7,11 @@
     margin: auto;
     margin-top: 50px;
 }
+
+.pais_no_encontrado{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    font-weight: bolder;
+    text-align: center;
+}
