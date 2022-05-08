@@ -1,5 +1,6 @@
 const { default: axios } = require("axios");
 const { Router } = require("express");
+const { ignore } = require("nodemon/lib/rules");
 const { Op } = require("sequelize");
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -37,10 +38,35 @@ async function get_countries() {
 // get_countries()
 
 router.get("/", async (req, res, next) => {
-	const { name, order } = req.query;
-	console.log(order, name);
+	const { name, order, continent } = req.query;
 	try {
-		if (name && order) {
+		if (name && order && continent) {
+			const db_result = await Country.findAll({
+				where: {
+					name: { [Op.iLike]: `%${name}%` },
+					continente: { [Op.iLike]: `%${continent}%` },
+				},
+				order: [["name", order]],
+			});
+			if (db_result.length > 0) {
+				res.json(db_result);
+			} else {
+				res.send(`${name} no se encuentra en ${continent} 🥲`);
+			}
+		} else if (name && !order && !continent){
+			const db_result = await Country.findAll({
+				where: {
+					name: { [Op.iLike]: `%${name}%` },
+				},
+				order: [["name", "ASC"]],
+			});
+			if (db_result.length > 0) {
+				res.json(db_result);
+			} else {
+				res.send(`${name} no se encuentra 🥲`);
+			}
+		}
+		else if (name && order) {
 			if (name && order === undefined) {
 				console.log("por que entro aca??");
 				const db_countries = await Country.findAll({
@@ -84,7 +110,15 @@ router.get("/", async (req, res, next) => {
 				});
 				res.json(db_countries);
 			}
-		} else if (!name && order) {
+		} else if (!name && order && continent) {
+			const db_result = await Country.findAll({
+				where: {
+					continente: { [Op.iLike]: `%${continent}%` },
+				},
+				order: [["name", "ASC"]],
+			});
+			res.json(db_result);
+		} else if (!name && order ) {
 			if (order === "ASC") {
 				console.log("por que no entro aca??");
 				const db_countries = await Country.findAll({
@@ -110,6 +144,9 @@ router.get("/", async (req, res, next) => {
 					next();
 				}
 			}
+		} else {
+			const db_result = await Country.findAll();
+			res.json(db_result)
 		}
 	} catch (error) {
 		next(error);

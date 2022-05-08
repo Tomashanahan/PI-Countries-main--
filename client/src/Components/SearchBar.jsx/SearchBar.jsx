@@ -8,12 +8,14 @@ import { useSelector } from "react-redux";
 function SearchBar() {
 	const [inputValue, setInputValue] = useState("");
 	const [alphabetic_order, setAlphabetic_order] = useState("");
-	const [continent, setContinent] = useState('');
+	const [continent, setContinent] = useState("");
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(get_country_by_name(inputValue, alphabetic_order || 'ASC'));
-	}, [alphabetic_order, inputValue]);
+		dispatch(
+			get_country_by_name(inputValue, alphabetic_order || "ASC", continent)
+		);
+	}, [alphabetic_order, inputValue, continent]);
 	console.log("Componente Continent->", continent);
 
 	return (
@@ -36,12 +38,15 @@ function SearchBar() {
 				</select>
 			</div>
 			<div className="">
-				<select name="continente" onChange={e => setContinent(e.target.value)}>
-					<option value="">Continente</option>
+				<select
+					name="continente"
+					onChange={(e) => setContinent(e.target.value)}
+				>
+					<option value="">Todos los Continentes</option>
 					<option value="Asia">Asia</option>
 					<option value="America">América</option>
 					<option value="Africa">Africa</option>
-					<option value="Antartida">Antártida</option>
+					<option value="Antarctica">Antártida</option>
 					<option value="Europa">Europa</option>
 					<option value="Oceania">Oceanía</option>
 				</select>

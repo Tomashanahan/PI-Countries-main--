@@ -29,13 +29,13 @@ export function get_countries() {
 	};
 }
 
-export function get_country_by_name(name, order) {
+export function get_country_by_name(name, order,continent) {
 	console.log("Action Input->", name);
 	console.log("Action Order->", order);
 	return (dispatch) => {
 		axios
 			.get(
-				`http://localhost:3001/countries?name=${name}&order=${order}`
+				`http://localhost:3001/countries?name=${name}&order=${order}&continent=${continent}`
 			)
 			.then((res) => {
 				dispatch({ type: GET_COUNTRY_BY_NAME, payload: res.data });
