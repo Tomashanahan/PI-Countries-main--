@@ -1,0 +1,12 @@
+.pais{
+    background-color: #2F3E46;
+    color: #F2F9ED;
+    border-radius: 3px;
+    text-align: left;
+    padding: 10px 20px 15px 20px;
+}
+
+.pais h1 {
+    text-transform: capitalize;
+    text-align: center;
+}

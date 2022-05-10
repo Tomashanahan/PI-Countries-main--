@@ -30,6 +30,7 @@
 	border: none;
 	color: #2F3E46;
 	border-radius: 3px;
+	cursor: pointer;
 }
 .search_bar select:focus{
 	outline: none;

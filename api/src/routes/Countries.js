@@ -38,22 +38,22 @@ async function get_countries() {
 // get_countries()
 
 router.get("/", async (req, res, next) => {
-	const { name, order, continent } = req.query;
+	const { name, order, continent, type, activity } = req.query;
 	try {
-		if (name && order && continent) {
+		if (name && order && continent && type) {
 			const db_result = await Country.findAll({
 				where: {
 					name: { [Op.iLike]: `%${name}%` },
 					continente: { [Op.iLike]: `%${continent}%` },
 				},
-				order: [["name", order]],
+				order: [[type, order]],
 			});
 			if (db_result.length > 0) {
 				res.json(db_result);
 			} else {
 				res.send(`${name} no se encuentra en ${continent} 🥲`);
 			}
-		} else if (name && !order && !continent){
+		} else if (name && !order && !continent) {
 			const db_result = await Country.findAll({
 				where: {
 					name: { [Op.iLike]: `%${name}%` },
@@ -65,8 +65,7 @@ router.get("/", async (req, res, next) => {
 			} else {
 				res.send(`${name} no se encuentra 🥲`);
 			}
-		}
-		else if (name && order) {
+		} else if (name && order) {
 			if (name && order === undefined) {
 				console.log("por que entro aca??");
 				const db_countries = await Country.findAll({
@@ -110,20 +109,17 @@ router.get("/", async (req, res, next) => {
 				});
 				res.json(db_countries);
 			}
-		} else if (!name && order && continent) {
+		} else if (!name && order && continent && type) {
 			const db_result = await Country.findAll({
 				where: {
 					continente: { [Op.iLike]: `%${continent}%` },
 				},
-				order: [["name", "ASC"]],
+				order: [[type, order]],
 			});
 			res.json(db_result);
-		} else if (!name && order ) {
-			if (order === "ASC") {
-				console.log("por que no entro aca??");
+		} else if (!name && order && type) {
 				const db_countries = await Country.findAll({
-					// where: { name: { [Op.iLike]: `%${name}%` } },
-					order: [["name", "ASC"]],
+					order: [[type, order]],
 				});
 				if (db_countries.length > 0) {
 					res.json(db_countries);
@@ -131,22 +127,9 @@ router.get("/", async (req, res, next) => {
 					res.send(`El pais "${name}" no fue encontrado`);
 					next();
 				}
-			} else if (order === "DESC") {
-				console.log("por que no entro aca??");
-				const db_countries = await Country.findAll({
-					// where: { name: { [Op.iLike]: `%${name}%` } },
-					order: [["name", "DESC"]],
-				});
-				if (db_countries.length > 0) {
-					res.json(db_countries);
-				} else {
-					res.send(`El pais "${name}" no fue encontrado`);
-					next();
-				}
-			}
 		} else {
 			const db_result = await Country.findAll();
-			res.json(db_result)
+			res.json(db_result);
 		}
 	} catch (error) {
 		next(error);

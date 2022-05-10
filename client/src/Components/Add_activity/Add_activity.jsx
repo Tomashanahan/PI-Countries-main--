@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { get_countries_sorted_by_name } from "../../Redux/Actions/index";
+import {
+	get_countries_sorted_by_name,
+	add_activity,
+} from "../../Redux/Actions/index";
 
 import "./Add_acttivity.css";
 
 function Add_activity() {
-	let { countries_sorted,country_name } = useSelector((state) => state);
+	let { countries_sorted } = useSelector((state) => state);
 	const dispatch = useDispatch();
 
 	const [inputValues, setInputValues] = useState({
@@ -70,6 +73,18 @@ function Add_activity() {
 			);
 		} else if (inputValues.duracion !== "") {
 			setInputErrores((inputErrores = { ...inputErrores, duracion: "" }));
+		}
+		/* Temporada */
+		if(inputValues.temporada === ''){
+			setInputErrores(inputErrores = {...inputErrores, temporada : 'Falto elegir una temporada'})
+		} else if(inputValues.temporada !== ''){
+			setInputErrores(inputErrores = {...inputErrores, temporada : ''})
+		}
+
+		if(Object.values(inputErrores).filter(e => e !== '').length == 0){
+			console.log({ ...inputValues, pais: paises });
+			dispatch(add_activity({ ...inputValues, pais: paises }));
+			alert("agregado");
 		}
 	}
 
@@ -163,12 +178,15 @@ function Add_activity() {
 					name={"temporada"}
 					onChange={inputChange}
 				>
-					<option value="temporada">Temporada</option>
-					<option value="verano">Verano</option>
-					<option value="otoño">Otoño</option>
-					<option value="invierno">Invierno</option>
-					<option value="primavera">Primavera</option>
+					<option value="">Temporada</option>
+					<option value="Verano">Verano</option>
+					<option value="Otoño">Otoño</option>
+					<option value="Invierno">Invierno</option>
+					<option value="Primavera">Primavera</option>
 				</select>
+				{inputErrores.dificultad !== "" ? (
+					<p className="error">{inputErrores.temporada}</p>
+				) : null}
 
 				<button className="add_activity-button" type="submit">
 					Agregar

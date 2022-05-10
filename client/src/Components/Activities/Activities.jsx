@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { get_activities } from "../../Redux/Actions";
 import Activity from "../Activity/Activity";
+import './Activities.css'
 
 function Activities() {
 	const { activities } = useSelector((state) => state);
@@ -10,10 +11,9 @@ function Activities() {
 	useEffect(() => {
 		dispatch(get_activities());
 	}, []);
-	console.log(activities)
 
 	return (
-		<div>
+		<div className="activities_grid">
 			{activities &&
 				activities.map((activity) => {
 					return <Activity key={activity.id} {...activity} />;

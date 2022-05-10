@@ -1,22 +1,48 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { get_country_by_name } from "../../Redux/Actions/index";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+	get_activities_country,
+	get_country_by_name,
+	get_activities,
+} from "../../Redux/Actions/index";
 
 function SearchBar() {
+	const { activities } = useSelector((state) => state);
 	const [inputValue, setInputValue] = useState("");
-	const [alphabetic_order, setAlphabetic_order] = useState("");
+	const [order, setOrder] = useState("");
 	const [continent, setContinent] = useState("");
+	const [select_tipo, setSelect_tipo] = useState("");
+	const [activity, setActivity] = useState(0);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(
-			get_country_by_name(inputValue, alphabetic_order || "ASC", continent)
+			get_country_by_name(
+				inputValue,
+				order || "ASC",
+				continent,
+				select_tipo || "name"
+			)
 		);
-	}, [alphabetic_order, inputValue, continent]);
-	console.log("Componente Continent->", continent);
+		dispatch(get_activities());
+	}, [order, inputValue, continent, select_tipo]);
+	
+	function handleActivity(e) {
+		if (e.target.value !== "") {
+			dispatch(get_activities_country(e.target.value));
+		} else if (e.target.value === "") {
+			dispatch(
+				get_country_by_name(
+					inputValue,
+					order || "ASC",
+					continent,
+					select_tipo || "name"
+				)
+			);
+		}
+	}
 
 	return (
 		<div className="search_bar">
@@ -30,11 +56,17 @@ function SearchBar() {
 			</div>
 			<div className="">
 				<select
-					name="alfabeticamente"
-					onChange={(e) => setAlphabetic_order(e.target.value)}
+					name="poblacion"
+					onChange={(e) => setSelect_tipo(e.target.value)}
 				>
-					<option value="ASC">A-Z</option>
-					<option value="DESC">Z-A</option>
+					<option value="name">Alfabéticamente</option>
+					<option value="poblacion">Población</option>
+				</select>
+			</div>
+			<div className="">
+				<select name="order" onChange={(e) => setOrder(e.target.value)}>
+					<option value="ASC">Asc</option>
+					<option value="DESC">Desc</option>
 				</select>
 			</div>
 			<div className="">
@@ -47,22 +79,21 @@ function SearchBar() {
 					<option value="America">América</option>
 					<option value="Africa">Africa</option>
 					<option value="Antarctica">Antártida</option>
-					<option value="Europa">Europa</option>
+					<option value="Europe">Europa</option>
 					<option value="Oceania">Oceanía</option>
 				</select>
 			</div>
 			<div className="">
-				<select name="poblacion">
-					<option value="">Poblacion</option>
-					<option value="asc">Asc</option>
-					<option value="desc">Desc</option>
-				</select>
-			</div>
-			<div className="">
-				<select name="actividad">
+				<select name="actividad" onChange={(e) => handleActivity(e)}>
 					<option value="">Actividad</option>
-					<option value="asc">Asc</option>
-					<option value="desc">Desc</option>
+					{activities.length > 0 &&
+						activities.map((activity) => {
+							return (
+								<option key={activity.id} value={activity.id}>
+									{activity.name}
+								</option>
+							);
+						})}
 				</select>
 			</div>
 		</div>
