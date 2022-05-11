@@ -1,6 +1,6 @@
 import {
 	GET_COUNTRY,
-	GET_COUNTRIES,
+	CLEAN_GET_ACTIVITIES_COUNTRY,
 	DELETE_ACTIVITY,
 	GET_ACTIVITIES,
 	ADD_ACTIVITY,
@@ -14,22 +14,17 @@ import {
 
 const initialState = {
 	country: {},
-	// countries: [],
+	activities_contry: [],
 	countries_sorted: [],
 	get_activity_country: [],
 	activities: [],
+	sorted_activities : [],
 	search_country_name : [],
 	country_activities : []
 };
 
 function reducer(state = initialState, { type, payload }) {
 	switch (type) {
-		// case GET_COUNTRIES: {
-		// 	return {
-		// 		...state,
-		// 		countries: payload,
-		// 	};
-		// }
 		case GET_COUNTRY: {
 			return {
 				...state,
@@ -76,10 +71,17 @@ function reducer(state = initialState, { type, payload }) {
 				country_activities : payload
 			};
 		}
+		case CLEAN_GET_ACTIVITIES_COUNTRY: {
+			return {
+				...state,
+				activities_contry : []
+			};
+		}
 		case GET_ACTIVITY_COUNTRY: {
 			return {
 				...state,
-				search_country_name : payload
+				activities_contry : payload
+				// search_country_name : payload
 			};
 		}
 		case DELETE_ACTIVITY_OF_PAIS: {

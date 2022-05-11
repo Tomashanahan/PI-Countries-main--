@@ -9,6 +9,7 @@ import {
 	CLEAN_COUNTRY_DETAIL,
 	GET_COUNTRIES_SORTED_BY_NAME,
 	GET_COUNTRY_BY_NAME,
+	CLEAN_GET_ACTIVITIES_COUNTRY,
 	GET_COUNTRY_ACTIVITIES,
 	DELETE_ACTIVITY_OF_PAIS
 } from "./actions_types";
@@ -32,11 +33,11 @@ export function get_countries() {
 	};
 }
 
-export function get_country_by_name(name, order, continent, type) {
+export function get_country_by_name(name, order, continent, type,activity) {
 	return (dispatch) => {
 		axios
 			.get(
-				`http://localhost:3001/countries?name=${name}&order=${order}&continent=${continent}&type=${type}`
+				`http://localhost:3001/countries?name=${name}&order=${order}&continent=${continent}&type=${type}&activity=${activity}`
 			)
 			.then((res) => {
 				dispatch({ type: GET_COUNTRY_BY_NAME, payload: res.data });
@@ -82,15 +83,20 @@ export function get_country_activities(id) {
 	};
 }
 
-export function get_activities_country(id) {
+export function get_activities_country(id,order,type,continent) {
 	return (dispatch) => {
+		// http://localhost:3001/activities/activity_country?id=4&order=DESC&type=name
 		axios
-			.get(`http://localhost:3001/activities/activity_country?id=${id}`)
+			.get(`http://localhost:3001/activities/activity_country?id=${id}&order=${order}&type=${type}&continente=${continent}`)
 			.then((res) => {
 				dispatch({ type: GET_ACTIVITY_COUNTRY, payload: res.data });
 			})
 			.catch((e) => console.log(e));
 	};
+}
+
+export function clean_get_activities_country() {
+	return {type : CLEAN_GET_ACTIVITIES_COUNTRY}
 }
 
 export function delete_activity(id) {

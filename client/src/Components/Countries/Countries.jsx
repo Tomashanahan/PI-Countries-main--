@@ -1,21 +1,36 @@
 import React from "react";
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { get_countries } from "../../Redux/Actions/index";
+import { useSelector } from "react-redux";
 import Country from "../Country/Country";
-
+import Pagination from "../Pagination/Pagination";
 import "./Countries.css";
 
-function Countries() {
-	const { search_country_name, countries_sorted } = useSelector((state) => state);
+function Countries({ pagina, setPagina }) {
+	const { search_country_name, activities_contry } = useSelector(
+		(state) => state
+	);
 
 	return (
 		<div>
-			{typeof search_country_name !== "string" && search_country_name.length > 0 ? (
+			{activities_contry.length > 0 && typeof activities_contry !== "string" ? (
 				<div className="countries_grid">
-					{search_country_name.map((country) => {
-						return <Country key={country.id} {...country} />;
-					})}
+					{activities_contry
+						.slice((pagina - 1) * 9, (pagina - 1) * 9 + 9)
+						.map((country) => {
+							return <Country key={country.id} {...country} />;
+						})}
+				</div>
+			) : typeof activities_contry === "string" ? (
+				<div className="pais_no_encontrado">
+					<h3>{activities_contry}</h3>
+				</div>
+			) : typeof search_country_name !== "string" &&
+			search_country_name.length > 0 ? (
+				<div className="countries_grid">
+					{search_country_name
+						.slice((pagina - 1) * 9, (pagina - 1) * 9 + 9)
+						.map((country) => {
+							return <Country key={country.id} {...country} />;
+						})}
 				</div>
 			) : typeof search_country_name === "string" ? (
 				<div className="pais_no_encontrado">
@@ -24,8 +39,10 @@ function Countries() {
 			) : (
 				<h3>Cargando...</h3>
 			)}
+			
+			{typeof activities_contry !== 'string' && <Pagination pagina={pagina} setPagina={setPagina}/>}
 		</div>
 	);
 }
 
-export default Countries; 
+export default Countries;

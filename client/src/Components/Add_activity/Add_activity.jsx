@@ -8,7 +8,7 @@ import {
 
 import "./Add_acttivity.css";
 
-function Add_activity() {
+function Addactivity() {
 	let { countries_sorted } = useSelector((state) => state);
 	const dispatch = useDispatch();
 
@@ -81,7 +81,7 @@ function Add_activity() {
 			setInputErrores(inputErrores = {...inputErrores, temporada : ''})
 		}
 
-		if(Object.values(inputErrores).filter(e => e !== '').length == 0){
+		if(Object.values(inputErrores).filter(e => e !== '').length === 0){
 			console.log({ ...inputValues, pais: paises });
 			dispatch(add_activity({ ...inputValues, pais: paises }));
 			alert("agregado");
@@ -196,4 +196,4 @@ function Add_activity() {
 	);
 }
 
-export default Add_activity;
+export default Addactivity;

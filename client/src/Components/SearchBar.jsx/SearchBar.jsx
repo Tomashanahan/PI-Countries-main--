@@ -6,33 +6,43 @@ import {
 	get_activities_country,
 	get_country_by_name,
 	get_activities,
+	clean_get_activities_country,
 } from "../../Redux/Actions/index";
 
-function SearchBar() {
-	const { activities } = useSelector((state) => state);
+function SearchBar({ setPagina }) {
+	const { activities, activities_contry } = useSelector((state) => state);
 	const [inputValue, setInputValue] = useState("");
 	const [order, setOrder] = useState("");
 	const [continent, setContinent] = useState("");
 	const [select_tipo, setSelect_tipo] = useState("");
-	const [activity, setActivity] = useState(0);
+	const [activity, setActivity] = useState("");
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(
-			get_country_by_name(
-				inputValue,
-				order || "ASC",
-				continent,
-				select_tipo || "name"
-			)
-		);
-		dispatch(get_activities());
-	}, [order, inputValue, continent, select_tipo]);
-	
-	function handleActivity(e) {
-		if (e.target.value !== "") {
-			dispatch(get_activities_country(e.target.value));
-		} else if (e.target.value === "") {
+		if (activities_contry.length === 0) {
+			dispatch(
+				get_country_by_name(
+					inputValue,
+					order || "ASC",
+					continent,
+					select_tipo || "name"
+				)
+			);
+			dispatch(get_activities());
+			setPagina(1);
+		}
+		if (activity !== "") {
+			dispatch(
+				get_activities_country(
+					activity,
+					order || "ASC",
+					select_tipo || "name",
+					continent
+				)
+			);
+			console.log(order);
+		} else if (activity === "") {
+			dispatch(clean_get_activities_country());
 			dispatch(
 				get_country_by_name(
 					inputValue,
@@ -42,7 +52,7 @@ function SearchBar() {
 				)
 			);
 		}
-	}
+	}, [order, inputValue, continent, select_tipo, activity]);
 
 	return (
 		<div className="search_bar">
@@ -84,9 +94,9 @@ function SearchBar() {
 				</select>
 			</div>
 			<div className="">
-				<select name="actividad" onChange={(e) => handleActivity(e)}>
+				<select name="actividad" onChange={(e) => setActivity(e.target.value)}>
 					<option value="">Actividad</option>
-					{activities.length > 0 &&
+					{activities.length > 0  &&
 						activities.map((activity) => {
 							return (
 								<option key={activity.id} value={activity.id}>

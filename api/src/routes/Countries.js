@@ -38,7 +38,7 @@ async function get_countries() {
 // get_countries()
 
 router.get("/", async (req, res, next) => {
-	const { name, order, continent, type, activity } = req.query;
+	const { name, order, continent, type } = req.query;
 	try {
 		if (name && order && continent && type) {
 			const db_result = await Country.findAll({
@@ -118,15 +118,15 @@ router.get("/", async (req, res, next) => {
 			});
 			res.json(db_result);
 		} else if (!name && order && type) {
-				const db_countries = await Country.findAll({
-					order: [[type, order]],
-				});
-				if (db_countries.length > 0) {
-					res.json(db_countries);
-				} else {
-					res.send(`El pais "${name}" no fue encontrado`);
-					next();
-				}
+			const db_countries = await Country.findAll({
+				order: [[type, order]],
+			});
+			if (db_countries.length > 0) {
+				res.json(db_countries);
+			} else {
+				res.send(`El pais "${name}" no fue encontrado`);
+				next();
+			}
 		} else {
 			const db_result = await Country.findAll();
 			res.json(db_result);

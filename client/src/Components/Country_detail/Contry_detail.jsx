@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { get_country } from "../../Redux/Actions";
@@ -16,12 +16,8 @@ function CountryDetail() {
 		dispatch(get_country_activities(id));
 		return () => dispatch(clean_country_detail());
 	}, []);
-	const _area = new Intl.NumberFormat("de-DE", {
-		maximumSignificantDigits: 3,
-	}).format(country.area);
-	const poblacion = new Intl.NumberFormat("de-DE", {
-		maximumSignificantDigits: 3,
-	}).format(country.poblacion);
+	const _area = country !== undefined ? new Intl.NumberFormat("de-DE", {maximumSignificantDigits: 3,}).format(country.area) : 'Undefined';
+	const poblacion = country !== undefined ? new Intl.NumberFormat("de-DE", {maximumSignificantDigits: 3,}).format(country.poblacion) : 'Undefined';
 
 	function delete_action(id_actividad) {
 		dispatch(delete_activity_of_country(id_actividad,id))
@@ -43,7 +39,7 @@ function CountryDetail() {
 							<p>Capital: <span>{country.capital}</span></p>
 							<p>Codigo: <span>{country.codigo}</span></p>
 							<p>Poblacion: <span>{poblacion}</span></p>
-							<p>Area: <span>{country.area > 1000000 ? _area + " Mill " : _area} km2</span></p>
+							<p>Area: <span>{country?.area > 1000000 ? _area + " Mill " : _area} km2</span></p>
 							<p>Subregion: <span>{country.subregion}</span></p>
 						</div>
 					</div>

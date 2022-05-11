@@ -1,0 +1,20 @@
+.page{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+.page p {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.select{
+    background-color: #1F2734;
+    border-radius: 3px;
+    color: white;
+    padding: 10px;
+}
