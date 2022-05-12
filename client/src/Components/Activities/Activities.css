@@ -7,3 +7,20 @@
     margin: auto;
     margin-top: 40px;
 }
+
+.no_activities{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+/* .no_activities p{
+    margin-right: 40px;
+} */
+
+.no_activities-a {
+    text-decoration: underline;
+    color: black;
+}

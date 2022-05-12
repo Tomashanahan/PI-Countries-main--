@@ -1,61 +1,79 @@
-.pais_detalle{
-    background-color: #2F3E46;
-    color: #F2F9ED;
-    width: 65%;
-    margin: auto;
-    padding: 10px;
-    margin-top: 40px;
-    border-radius: 3px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+.pais_detalle {
+	background-color: #1e3557;
+	color: #f2f9ed;
+	width: 65%;
+	margin: auto;
+	padding: 10px;
+	margin-top: 40px;
+	border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	position: relative;
+	z-index: -2;
 }
 
-.caja_detalle{
-    display: flex;
-    width: 70%;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px 0 40px 0;
+.caja_detalle {
+	display: flex;
+	width: 70%;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px 0 40px 0;
 }
 
-.pais_detalle_info{
+.pais_detalle_info {
+	text-align: left;
+}
+
+.pais_detalle_info p span {
+	font-weight: lighter;
+}
+
+.pais_detalle_img {
+	transition: all 0.3s ease;
+	object-fit: cover;
+	filter: blur(15px);
+	z-index: -1;
+    margin-left: -15px;
+}
+
+.pais_detalle_img_arriba_1 {
+    position: absolute;
+    top: 100px;
+}
+
+.pais_detalle_img_arriba {
+	border-radius: 3px;
+}
+
+.detalle {
+	margin-top: 50px;
+}
+
+.actividad_pais {
+	background-color: #1d3557;
+    width: 500px;
     text-align: left;
-}
-
-.pais_detalle_info p span{
-    font-weight: lighter;
-}
-
-.pais_detalle img{
     border-radius: 3px;
+	color: #f2f9ed;
+	padding: 20px;
+	margin: 40px;
 }
 
-.detalle{
-    margin-top: 50px;
+.actividad_pais h1 {
+	text-align: center;
 }
 
-.actividad_pais{
-    background-color: #2F3E45;
-    color: #F2F9ED;
-    padding: 20px;
-    margin: 40px;
+.actividad_pais_grid {
+	display: grid;
+	grid-template-columns: repeat(2, 40%);
+	justify-content: center;
+	text-align: left;
+	border-radius: 3px;
 }
 
-.actividad_pais h1{
-    text-align: center;
-}
-
-.actividad_pais_grid{
-    display: grid;
-    grid-template-columns: repeat(2, 40%);
-    justify-content: center;
-    text-align: left;
-    border-radius: 3px;
-}
-
-.actividad_pais_flex{
-    display: flex;
-    justify-content: center;
+.actividad_pais_flex {
+	display: flex;
+	justify-content: center;
 }

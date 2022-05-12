@@ -1,8 +1,8 @@
 .page{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    width: 60%;
+    width: 62%;
     margin: auto;
     margin-bottom: 40px;
 }
@@ -10,10 +10,11 @@
 .page p {
     margin: 10px;
     cursor: pointer;
+    color: white;
 }
 
 .select{
-    background-color: #1F2734;
+    background-color: #98c1d9;
     border-radius: 3px;
     color: white;
     padding: 10px;

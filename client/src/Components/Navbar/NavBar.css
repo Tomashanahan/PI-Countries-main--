@@ -1,5 +1,5 @@
 .nav_bar{
-    background-color: #354f52;
+    background-color: #cae9ff;
     padding: 25px;
 }
 
@@ -7,5 +7,24 @@
     font-weight: bold;
     margin: 10px 20px;
     text-decoration: none;
-    color: #F2F9ED;
+    color: #14213D;
+}
+
+.home{
+    background-color: #14213D;
+    padding: 10px;
+    color: #98c1d9;
+    border-radius: 3px;
+}
+.actividades{
+    background-color: #14213D;
+    padding: 10px;
+    color: #98c1d9;
+    border-radius: 3px;
+}
+.crear_actividad{
+    background-color: #14213D;
+    padding: 10px;
+    color: #98c1d9;
+    border-radius: 3px;
 }

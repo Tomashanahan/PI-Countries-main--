@@ -12,9 +12,7 @@ function Pagination({ pagina, setPagina }) {
 		for (let i = 1; i <= activities_contry.length / 9 + 1; i++) {
 			arr.push(i);
 		}
-	} else if(typeof activities_contry === 'string'){
-		arr = []
-	}else {
+	} else {
 		for (let i = 1; i <= search_country_name.length / 9 + 1; i++) {
 			arr.push(i);
 		}
@@ -25,13 +23,14 @@ function Pagination({ pagina, setPagina }) {
 			{typeof search_country_name !== "string" &&
 				arr.map((elem) => {
 					return (
-						<p
-							key={elem}
-							className={pagina === elem ? "select" : ""}
-							onClick={() => setPagina(elem)}
-						>
-							{elem}
-						</p>
+						<div key={elem}>
+							<p
+								className={pagina === elem ? "select" : ""}
+								onClick={() => setPagina(elem)}
+							>
+								{elem}
+							</p>
+						</div>
 					);
 				})}
 		</div>

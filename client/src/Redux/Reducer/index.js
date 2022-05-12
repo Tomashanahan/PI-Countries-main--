@@ -1,7 +1,6 @@
 import {
 	GET_COUNTRY,
 	CLEAN_GET_ACTIVITIES_COUNTRY,
-	DELETE_ACTIVITY,
 	GET_ACTIVITIES,
 	ADD_ACTIVITY,
 	CLEAN_COUNTRY_DETAIL,
@@ -38,11 +37,6 @@ function reducer(state = initialState, { type, payload }) {
 			};
 		}
 		case ADD_ACTIVITY: {
-			return {
-				...state,
-			};
-		}
-		case DELETE_ACTIVITY: {
 			return {
 				...state,
 			};

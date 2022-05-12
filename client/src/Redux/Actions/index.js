@@ -2,7 +2,6 @@ import axios from "axios";
 import {
 	GET_COUNTRY,
 	GET_COUNTRIES,
-	DELETE_ACTIVITY,
 	GET_ACTIVITY_COUNTRY,
 	GET_ACTIVITIES,
 	ADD_ACTIVITY,
@@ -97,17 +96,6 @@ export function get_activities_country(id,order,type,continent) {
 
 export function clean_get_activities_country() {
 	return {type : CLEAN_GET_ACTIVITIES_COUNTRY}
-}
-
-export function delete_activity(id) {
-	return (dispatch) => {
-		axios
-			.delete(`http://localhost:3001/activities/${id}`)
-			.then((res) => {
-				dispatch({ type: DELETE_ACTIVITY, payload: res.data });
-			})
-			.catch((e) => console.log(e));
-	};
 }
 
 export function delete_activity_of_country(id_actividad,id_pais) {

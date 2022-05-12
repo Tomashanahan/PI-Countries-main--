@@ -72,38 +72,59 @@ router.get("/activity_country", async (req, res) => {
 		if (db) {
 			if (db.countries.length > 0) {
 				if (order === "ASC" && type === "name" && continente) {
-					let m = db.countries.filter(
-						(country) => country.continente === continente
+					let m = db.countries.sort((a, b) => (a.name > b.name ? 1 : -1)).filter(
+						(country) => country.continente.includes(continente)
 					);
 					console.log(m);
 					if (m.length > 0) {
 						return res.json(m);
 					} else {
 						res.send(
-							`No se encuentran paises con la actividad ${db.name} en el contiente ${continente}`
+							`No se encuentran paises con la actividad "${db.name}" en el contiente "${continente}"`
 						);
 					}
 				} else if (order === "ASC" && type === "name") {
 					let m = db.countries.sort((a, b) => (a.name > b.name ? 1 : -1)); // asc
 					return res.json(m);
 				} else if (order === "DESC" && type === "name" && continente) {
-					let m = db.countries.filter(
-						(country) => country.continente === continente
+					let m = db.countries.sort((a, b) => (b.name > a.name ? 1 : -1)).filter(
+						(country) => country.continente.includes(continente)
 					);
-					console.log(m);
 					if (m.length > 0) {
 						return res.json(m);
 					} else {
 						res.send(
-							`No se encuentran paises con la actividad ${db.name} en el contiente ${continente}`
+							`No se encuentran paises con la actividad "${db.name}" en el contiente "${continente}"`
 						);
 					}
 				} else if (order === "DESC" && type === "name") {
 					let m = db.countries.sort((a, b) => (b.name > a.name ? 1 : -1)); // desc
 					return res.json(m);
+				} else if (order === "DESC" && type === "poblacion" && continente) {
+					let m = db.countries
+						.sort((a, b) => b.poblacion - a.poblacion)
+						.filter((country) => country.continente.includes(continente));
+					if (m.length > 0) {
+						return res.json(m);
+					} else {
+						res.send(
+							`No se encuentran paises con la actividad "${db.name}" en el contiente "${continente}"`
+						);
+					}
 				} else if (order === "DESC" && type === "poblacion") {
 					let m = db.countries.sort((a, b) => b.poblacion - a.poblacion); // desc
 					return res.json(m);
+				} else if (order === "ASC" && type === "poblacion" && continente) {
+					let m = db.countries
+						.sort((a, b) => a.poblacion - b.poblacion)
+						.filter((country) => country.continente.includes(continente));
+					if (m.length > 0) {
+						return res.json(m);
+					} else {
+						res.send(
+							`No se encuentran paises con la actividad "${db.name}" en el contiente "${continente}"`
+						);
+					}
 				} else if (order === "ASC" && type === "poblacion") {
 					let m = db.countries.sort((a, b) => a.poblacion - b.poblacion); // asc
 					return res.json(m);

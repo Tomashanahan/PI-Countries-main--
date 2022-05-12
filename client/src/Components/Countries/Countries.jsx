@@ -24,7 +24,7 @@ function Countries({ pagina, setPagina }) {
 					<h3>{activities_contry}</h3>
 				</div>
 			) : typeof search_country_name !== "string" &&
-			search_country_name.length > 0 ? (
+			  search_country_name.length > 0 ? (
 				<div className="countries_grid">
 					{search_country_name
 						.slice((pagina - 1) * 9, (pagina - 1) * 9 + 9)
@@ -37,10 +37,21 @@ function Countries({ pagina, setPagina }) {
 					<h3>{search_country_name} 🥲</h3>
 				</div>
 			) : (
-				<h3>Cargando...</h3>
+				<>
+					<iframe
+						src="https://giphy.com/embed/RHEqKwRZDwFKE"
+						width="480"
+						height="204"
+						frameBorder="0"
+						class="giphy-embed"
+						allowFullScreen
+					></iframe>
+				</>
 			)}
-			
-			{typeof activities_contry !== 'string' && <Pagination pagina={pagina} setPagina={setPagina}/>}
+
+			{typeof activities_contry !== "string" && (
+				<Pagination pagina={pagina} setPagina={setPagina} />
+			)}
 		</div>
 	);
 }
