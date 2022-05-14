@@ -37,7 +37,8 @@ function SearchBar({ setPagina }) {
 					activity,
 					order || "ASC",
 					select_tipo || "name",
-					continent
+					continent,
+					inputValue
 				)
 			);
 			console.log(order);
@@ -96,7 +97,7 @@ function SearchBar({ setPagina }) {
 			<div className="">
 				<select name="actividad" onChange={(e) => setActivity(e.target.value)}>
 					<option value="">Actividad</option>
-					{activities.length > 0  &&
+					{activities.length > 0 &&
 						activities.map((activity) => {
 							return (
 								<option key={activity.id} value={activity.id}>

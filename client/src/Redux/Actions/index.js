@@ -88,12 +88,11 @@ export function get_country_activities(id) {
 	};
 }
 
-export function get_activities_country(id, order, type, continent) {
+export function get_activities_country(id, order, type, continent,name) {
 	return (dispatch) => {
-		// http://localhost:3001/activities/activity_country?id=4&order=DESC&type=name
 		axios
 			.get(
-				`activities/activity_country?id=${id}&order=${order}&type=${type}&continente=${continent}`
+				`activities/activity_country?id=${id}&order=${order}&type=${type}&continente=${continent}&name=${name}`
 			)
 			.then((res) => {
 				dispatch({ type: GET_ACTIVITY_COUNTRY, payload: res.data });

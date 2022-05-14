@@ -43,7 +43,7 @@ function Countries({ pagina, setPagina }) {
 						width="480"
 						height="204"
 						frameBorder="0"
-						class="giphy-embed"
+						className="giphy-embed"
 						allowFullScreen
 					></iframe>
 				</>

@@ -48,7 +48,7 @@ function CountryDetail() {
 						width="480"
 						height="204"
 						frameBorder="0"
-						class="giphy-embed"
+						className="giphy-embed"
 						allowFullScreen
 					></iframe>
 				</>
@@ -61,7 +61,7 @@ function CountryDetail() {
 								<img
 									src={country.img_bandera}
 									alt={country.name}
-									width={"350px"}
+									// width={"350px"}
 								/>
 							</div>
 							<div className="pais_detalle_img_arriba_1">

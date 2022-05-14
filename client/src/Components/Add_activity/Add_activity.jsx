@@ -24,6 +24,7 @@ function Addactivity() {
 		dificultad: "",
 		duracion: "",
 		temporada: "",
+		paises : ""
 	});
 
 	let [paises, setPaises] = useState([]);
@@ -50,8 +51,7 @@ function Addactivity() {
 		} else if (inputValues.dificultad > 5 || inputValues.dificultad < 1) {
 			setInputErrores(
 				(inputErrores = {
-					...inputErrores,
-					dificultad: "La dificultad solo puede ser entre 1 y 5",
+					...inputErrores, dificultad: "La dificultad solo puede ser entre 1 y 5"
 				})
 			);
 		} else if (inputValues.dificultad < 5 || inputValues.dificultad > 1) {
@@ -74,6 +74,7 @@ function Addactivity() {
 		} else if (inputValues.duracion !== "") {
 			setInputErrores((inputErrores = { ...inputErrores, duracion: "" }));
 		}
+
 		/* Temporada */
 		if(inputValues.temporada === ''){
 			setInputErrores(inputErrores = {...inputErrores, temporada : 'Falto elegir una temporada'})
@@ -87,20 +88,20 @@ function Addactivity() {
 			alert("agregado");
 		}
 	}
+	// console.log('Values ->',inputValues);
+	// console.log('Errores ->',inputErrores);
 
 	function inputChange(e) {
 		setInputValues({ ...inputValues, [e.target.name]: e.target.value });
 	}
 
-	function selectChage(e) {
-		// console.log(e.target.value.name);
+	function selectCountries(e) {
 		setPaises(
 			paises.includes(e.target.value)
 				? (paises = paises.filter((elem) => elem !== e.target.value))
 				: [...paises, e.target.value]
 		);
 	}
-	console.log(paises);
 
 	return (
 		<div className="add_activity">
@@ -128,9 +129,9 @@ function Addactivity() {
 					type="number"
 					onChange={inputChange}
 				/>
-				{inputErrores.dificultad !== "" ? (
+				{inputErrores.dificultad !== "" && (
 					<p className="error">{inputErrores.dificultad}</p>
-				) : null}
+				)}
 
 				<label className="add_activity-label" htmlFor="">
 					Duracion
@@ -151,7 +152,7 @@ function Addactivity() {
 				<select
 					className="add_activity-select"
 					name={"pais"}
-					onClick={selectChage}
+					onClick={selectCountries}
 					multiple
 				>
 					{countries_sorted.length > 0 &&
@@ -184,9 +185,9 @@ function Addactivity() {
 					<option value="Invierno">Invierno</option>
 					<option value="Primavera">Primavera</option>
 				</select>
-				{inputErrores.dificultad !== "" ? (
+				{inputErrores.temporada !== "" && (
 					<p className="error">{inputErrores.temporada}</p>
-				) : null}
+				)}
 
 				<button className="add_activity-button" type="submit">
 					Agregar

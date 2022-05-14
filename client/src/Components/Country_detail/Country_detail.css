@@ -35,12 +35,13 @@
 	object-fit: cover;
 	filter: blur(15px);
 	z-index: -1;
-    margin-left: -15px;
+	margin-left: -15px;
+	width: 350px;
 }
 
 .pais_detalle_img_arriba_1 {
-    position: absolute;
-    top: 100px;
+	position: absolute;
+	top: 100px;
 }
 
 .pais_detalle_img_arriba {
@@ -53,9 +54,9 @@
 
 .actividad_pais {
 	background-color: #1d3557;
-    width: 500px;
-    text-align: left;
-    border-radius: 3px;
+	width: 500px;
+	text-align: left;
+	border-radius: 3px;
 	color: #f2f9ed;
 	padding: 20px;
 	margin: 40px;
@@ -76,4 +77,33 @@
 .actividad_pais_flex {
 	display: flex;
 	justify-content: center;
+}
+
+@media (max-width: 1200px) {
+	.caja_detalle {
+		display: flex;
+		width: 70%;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		margin: 50px 0 40px 0;
+	}
+}
+
+@media (max-width: 500px) {
+	.pais_detalle_img_arriba{
+		border-radius: 3px;
+		width: 80%;
+		/* margin: auto;
+		margin: 0; */
+		justify-self: center;
+	}
+	.pais_detalle_img img{
+		transition: all 0.3s ease;
+		object-fit: cover;
+		filter: blur(15px);
+		z-index: -1;
+		margin-top: -15px;
+		width: 250px;
+	}
 }
