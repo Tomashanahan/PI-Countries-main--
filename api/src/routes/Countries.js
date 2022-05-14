@@ -1,4 +1,3 @@
-// const { default: axios } = require("axios");
 const { Router } = require("express");
 const { ignore } = require("nodemon/lib/rules");
 const { Op } = require("sequelize");
@@ -6,6 +5,7 @@ const { Op } = require("sequelize");
 // Ejemplo: const authRouter = require('./auth.js');
 const { Country } = require("../db");
 const { Activity } = require("../db");
+const axios = require('axios')
 const router = Router();
 
 async function get_countries() {
