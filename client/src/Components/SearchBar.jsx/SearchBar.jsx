@@ -62,7 +62,7 @@ function SearchBar({ setPagina }) {
 					type="text"
 					placeholder="Buscar"
 					autoFocus
-					onChange={(e) => setInputValue(e.target.value)}
+					onChange={(e) => setInputValue(e.target.value.trim())}
 				/>
 			</div>
 			<div className="">

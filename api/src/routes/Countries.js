@@ -35,7 +35,7 @@ async function get_countries() {
 		});
 	});
 }
-get_countries()
+// get_countries()
 
 router.get("/", async (req, res, next) => {
 	const { name, order, continent, type } = req.query;
