@@ -37,3 +37,12 @@
 .img_arriba img {
 	border-radius: 3px;
 }
+
+
+@media (max-width: 1800px) {
+	.img_arriba {
+		position: absolute;
+		top: 20px;
+		border-radius: 3px;
+	}
+}
