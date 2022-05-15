@@ -22,7 +22,7 @@ function SearchBar({ setPagina }) {
 		if (activities_contry.length === 0) {
 			dispatch(
 				get_country_by_name(
-					inputValue,
+					inputValue.trim(),
 					order || "ASC",
 					continent,
 					select_tipo || "name"
@@ -34,7 +34,7 @@ function SearchBar({ setPagina }) {
 		if (activity !== "") {
 			dispatch(
 				get_activities_country(
-					activity,
+					activity.trim(),
 					order || "ASC",
 					select_tipo || "name",
 					continent,
@@ -46,7 +46,7 @@ function SearchBar({ setPagina }) {
 			dispatch(clean_get_activities_country());
 			dispatch(
 				get_country_by_name(
-					inputValue,
+					inputValue.trim(),
 					order || "ASC",
 					continent,
 					select_tipo || "name"
@@ -62,7 +62,7 @@ function SearchBar({ setPagina }) {
 					type="text"
 					placeholder="Buscar"
 					autoFocus
-					onChange={(e) => setInputValue((e.target.value).trim())}
+					onChange={(e) => setInputValue(e.target.value)}
 				/>
 			</div>
 			<div className="">
