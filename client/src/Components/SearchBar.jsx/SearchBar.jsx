@@ -22,7 +22,7 @@ function SearchBar({ setPagina }) {
 		if (activities_contry.length === 0) {
 			dispatch(
 				get_country_by_name(
-					inputValue.trim(),
+					inputValue,
 					order || "ASC",
 					continent,
 					select_tipo || "name"
@@ -34,7 +34,7 @@ function SearchBar({ setPagina }) {
 		if (activity !== "") {
 			dispatch(
 				get_activities_country(
-					activity.trim(),
+					activity,
 					order || "ASC",
 					select_tipo || "name",
 					continent,
@@ -46,7 +46,7 @@ function SearchBar({ setPagina }) {
 			dispatch(clean_get_activities_country());
 			dispatch(
 				get_country_by_name(
-					inputValue.trim(),
+					inputValue,
 					order || "ASC",
 					continent,
 					select_tipo || "name"
