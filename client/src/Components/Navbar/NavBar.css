@@ -14,17 +14,36 @@
     background-color: #14213D;
     padding: 10px;
     color: #98c1d9;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 .actividades{
     background-color: #14213D;
     padding: 10px;
     color: #98c1d9;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 .crear_actividad{
     background-color: #14213D;
     padding: 10px;
     color: #98c1d9;
-    border-radius: 3px;
+    border-radius: 10px;
+}
+@media (max-width: 390px) {
+	.nav_bar {
+		background-color: #cae9ff;
+		padding: 25px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+	}
+}
+
+@media (max-width: 415px) {
+	.nav_bar {
+		background-color: #cae9ff;
+		padding: 25px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+	}
 }

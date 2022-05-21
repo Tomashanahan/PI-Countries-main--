@@ -155,17 +155,14 @@ function Addactivity() {
 					onClick={selectCountries}
 					multiple
 				>
-					{countries_sorted.length > 0 &&
+					{countries_sorted?.length > 0 &&
 						countries_sorted.map((country) => {
 							return (
 								<option
-									className={`add_activity-option ${
-										paises.includes(country.id) ? "pais_seleccionado" : ""
-									}`}
 									key={country.id}
 									value={country.id}
 								>
-									{country.name}
+									{paises.includes(country.id) ? country.name + " ✅" : country.name}
 								</option>
 							);
 						})}

@@ -5,7 +5,7 @@
 	margin: auto;
 	padding: 10px;
 	margin-top: 40px;
-	border-radius: 3px;
+	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
@@ -45,7 +45,7 @@
 }
 
 .pais_detalle_img_arriba {
-	border-radius: 3px;
+	border-radius: 10px;
 }
 
 .detalle {
@@ -56,7 +56,7 @@
 	background-color: #1d3557;
 	width: 500px;
 	text-align: left;
-	border-radius: 3px;
+	border-radius: 10px;
 	color: #f2f9ed;
 	padding: 20px;
 	margin: 40px;
@@ -71,7 +71,7 @@
 	grid-template-columns: repeat(2, 40%);
 	justify-content: center;
 	text-align: left;
-	border-radius: 3px;
+	border-radius: 10px;
 }
 
 .actividad_pais_flex {
@@ -92,7 +92,7 @@
 
 @media (max-width: 500px) {
 	.pais_detalle_img_arriba{
-		border-radius: 3px;
+		border-radius: 10px;
 		width: 80%;
 		/* margin: auto;
 		margin: 0; */

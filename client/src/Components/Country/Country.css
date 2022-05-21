@@ -5,8 +5,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border-radius: 5px;
-	border-radius: 3px;
+	border-radius: 10px;
 	position: relative;
 	z-index: 1;
 }
@@ -30,19 +29,10 @@
 .img_arriba {
 	position: absolute;
 	top: 20px;
-	border-radius: 3px;
+	border-radius: 10px;
 	/* left: 40px; */
 }
 
 .img_arriba img {
-	border-radius: 3px;
+	border-radius: 10px;
 }
-
-
-/* @media (max-width: 1800px) {
-	.img_arriba {
-		position: absolute;
-		top: 20px;
-		border-radius: 3px;
-	}
-} */
