@@ -21,6 +21,8 @@
 
 .add_activity-select {
 	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 	margin-top: 10px;
 	width: 100%;
 	padding: 10px;
@@ -116,6 +118,8 @@
 
 	.add_activity-select {
 		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
 		margin-top: 10px;
 		width: 100%;
 		padding: 10px;
@@ -184,6 +188,8 @@
 
 	.add_activity-select {
 		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
 		margin-top: 10px;
 		width: 100%;
 		padding: 10px;
