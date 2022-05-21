@@ -40,8 +40,7 @@ function Countries({ pagina, setPagina }) {
 			) : (
 				<img src={cargando} width='50px'/>
 			)}
-
-			{typeof activities_contry !== "string" && (
+			{(typeof activities_contry !== "string" && search_country_name.length > 0) && (
 				<Pagination pagina={pagina} setPagina={setPagina} />
 			)}
 		</div>
