@@ -143,30 +143,57 @@ router.get("/:idPais", async (req, res, next) => {
 			where: { id: idPais },
 			include: Activity,
 		});
+		function quitarAcentos(cadena) {
+			const acentos = {
+				ã: "a",
+				Å: "A",
+				á: "a",
+				é: "e",
+				í: "i",
+				ó: "o",
+				ú: "u",
+				Á: "A",
+				É: "E",
+				Í: "I",
+				Ó: "O",
+				Ú: "U",
+			};
+			return cadena
+				.split("")
+				.map((letra) => acentos[letra] || letra)
+				.join("")
+				.toString();
+		}
 
-		if (db_countrie) {
-			let name = db_countrie.name;
-			let info = await axios.get(`https://restcountries.com/v3/name/${name}`);
-			if (info.data.length > 0) {
-				info = info.data.map((elem) => {
-					return {
-						name: elem.name.common,
-						codigo: elem.cca3,
-						img_bandera: elem.flags[1],
-						capital: elem.capital !== undefined && elem.capital[0],
-						subregion: elem.subregion,
-						area: elem.area,
-						poblacion: elem.population,
-						activities: db_countrie.activities,
-					};
-				});
+		if (db_countrie !== null) {
+			let name = quitarAcentos(db_countrie.name);
+			name.includes('Aland') && (name = 'Aland')
+			try {
+				let info = await axios.get(`https://restcountries.com/v3/name/${name}`);
+				if (info.data.length > 0) {
+					info = info.data.map((elem) => {
+						return {
+							name: elem.name.common,
+							codigo: elem.cca3,
+							img_bandera: elem.flags[1],
+							capital: elem.capital !== undefined && elem.capital[0],
+							subregion: elem.subregion,
+							area: elem.area,
+							poblacion: elem.population,
+							activities: db_countrie.activities,
+						};
+					});
 
+					res.json(info);
+				} else {
+					res.status(404).send("Pais no encontrado 🥲");
+				}
 				res.json(info);
-			} else {
-				res.send("Pais no encontrado 🥲");
+			} catch (error) {
+				res.send("Se fue todo a la mierda");
 			}
 		} else {
-			res.send("Pais no encontrado 🥲");
+			res.status(404).send("Pais no encontrado 🥲");
 		}
 	} catch (error) {
 		next(error);
