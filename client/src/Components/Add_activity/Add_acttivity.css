@@ -49,6 +49,7 @@
 }
 
 .add_activity-input {
+	-webkit-appearance: none;
 	width: 97%;
 	padding: 15px 0 10px 15px;
 	margin-top: 10px;
@@ -105,6 +106,7 @@
 	}
 
 	.add_activity-input {
+		-webkit-appearance: none;
 		width: 95%;
 		padding: 15px 0 10px 15px;
 		margin-top: 10px;
@@ -162,6 +164,7 @@
 	}
 
 	.add_activity-input {
+		-webkit-appearance: none;
 		width: 95%;
 		padding: 15px 0 10px 15px;
 		margin-top: 10px;
