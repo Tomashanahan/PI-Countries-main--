@@ -168,6 +168,7 @@ router.get("/:idPais", async (req, res, next) => {
 		if (db_countrie !== null) {
 			let name = quitarAcentos(db_countrie.name);
 			name.includes('Aland') && (name = 'Aland')
+			
 			try {
 				let info = await axios.get(`https://restcountries.com/v3/name/${name}`);
 				if (info.data.length > 0) {
