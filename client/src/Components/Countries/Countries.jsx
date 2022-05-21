@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Country from "../Country/Country";
 import Pagination from "../Pagination/Pagination";
 import "./Countries.css";
+import cargando  from '../../img/el_bueno.gif'
 
 function Countries({ pagina, setPagina }) {
 	const { search_country_name, activities_contry } = useSelector(
@@ -37,16 +38,7 @@ function Countries({ pagina, setPagina }) {
 					<h3>{search_country_name} 🥲</h3>
 				</div>
 			) : (
-				<>
-					<iframe
-						src="https://giphy.com/embed/RHEqKwRZDwFKE"
-						width="480"
-						height="204"
-						frameBorder="0"
-						className="giphy-embed"
-						allowFullScreen
-					></iframe>
-				</>
+				<img src={cargando} width='50px'/>
 			)}
 
 			{typeof activities_contry !== "string" && (

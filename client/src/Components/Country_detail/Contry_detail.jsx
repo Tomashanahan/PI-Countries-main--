@@ -9,7 +9,7 @@ import {
 	delete_activity_of_country,
 } from "../../Redux/Actions/index";
 import "./Country_detail.css";
-import cargando from "../../img/Spinner-1s-200px.gif";
+import cargando from "../../img/el_bueno.gif";
 
 function CountryDetail() {
 	let { id } = useParams();
@@ -42,16 +42,7 @@ function CountryDetail() {
 	return (
 		<div className="detalle">
 			{country.name === undefined ? (
-				<>
-					<iframe
-						src="https://giphy.com/embed/RHEqKwRZDwFKE"
-						width="480"
-						height="204"
-						frameBorder="0"
-						className="giphy-embed"
-						allowFullScreen
-					></iframe>
-				</>
+				<img src={cargando} width='50px'/>
 			) : (
 				<div className="pais_detalle">
 					<h1>{country.name}</h1>
